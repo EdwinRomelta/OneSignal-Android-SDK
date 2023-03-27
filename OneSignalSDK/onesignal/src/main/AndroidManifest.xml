@@ -24,22 +24,22 @@
 
     <!-- START: ShortcutBadger -->
     <!-- Samsung -->
-    <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
-    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
 
     <!-- HTC -->
-    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
-    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
 
     <!-- Sony -->
-    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE"/>
-    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE"/>
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" />
 
     <!-- Apex -->
-    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" />
 
     <!-- Solid -->
-    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" />
 
     <!-- Huawei -->
     <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
@@ -47,21 +47,23 @@
     <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
 
     <!-- ZUK -->
-    <uses-permission android:name="android.permission.READ_APP_BADGE"/>
+    <uses-permission android:name="android.permission.READ_APP_BADGE" />
 
     <!-- OPPO -->
-    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
-    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" />
 
     <!-- EvMe -->
-    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
-    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
 
     <!-- End: ShortcutBadger -->
 
     <application>
 
-        <receiver android:name="com.onesignal.NotificationOpenedReceiver" />
+        <receiver
+            android:name="com.onesignal.NotificationOpenedReceiver"
+            android:exported="false" />
 
         <service
             android:name="com.onesignal.HmsMessageServiceOneSignal"
@@ -70,41 +72,64 @@
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        
-        <activity android:name="com.onesignal.NotificationOpenedActivityHMS"
-                  android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+        <activity
+            android:name="com.onesignal.NotificationOpenedActivityHMS"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
-        <service android:name="com.onesignal.GcmIntentService" />
+        <service
+            android:name="com.onesignal.GcmIntentService"
+            android:exported="false" />
 
-        <service android:name="com.onesignal.GcmIntentJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
-
-        <service android:name="com.onesignal.RestoreJobService"
+        <service
+            android:name="com.onesignal.GcmIntentJobService"
+            android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <service android:name="com.onesignal.RestoreKickoffJobService"
+        <service
+            android:name="com.onesignal.RestoreJobService"
+            android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <service android:name="com.onesignal.SyncService" android:stopWithTask="true" />
-        <service android:name="com.onesignal.SyncJobService"
+        <service
+            android:name="com.onesignal.RestoreKickoffJobService"
+            android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <activity android:name="com.onesignal.PermissionsActivity"
-                  android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <service
+            android:name="com.onesignal.SyncService"
+            android:exported="false"
+            android:stopWithTask="true" />
+        <service
+            android:name="com.onesignal.SyncJobService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
-        <service android:name="com.onesignal.NotificationRestoreService" />
+        <activity
+            android:name="com.onesignal.PermissionsActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <receiver android:name="com.onesignal.BootUpReceiver">
+        <service
+            android:name="com.onesignal.NotificationRestoreService"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.onesignal.BootUpReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.onesignal.UpgradeReceiver" >
+        <receiver
+            android:name="com.onesignal.UpgradeReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
